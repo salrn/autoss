@@ -1,7 +1,6 @@
 import os
 import time
 from datetime import datetime
-
 import pyautogui
 from PIL import Image
 from pynput import keyboard
@@ -10,7 +9,7 @@ from playsound import playsound
 print("██▀▄─██▄─██─▄█─▄─▄─█─▄▄─███─▄▄▄▄█─▄▄▄▄█")
 print("██─▀─███─██─████─███─██─███▄▄▄▄─█▄▄▄▄─█")
 print("▀▄▄▀▄▄▀▀▄▄▄▄▀▀▀▄▄▄▀▀▄▄▄▄▀▀▀▄▄▄▄▄▀▄▄▄▄▄▀")
-print("🅆🄴🄻🄲🄾🄼🄴 (🅅1.0.0)")
+print("by ccmirza (v1.0.0) free and open source on github")
 time.sleep(1)
 print("Press enter to use default on any values asked")
 
@@ -19,9 +18,9 @@ try:
     time.sleep(2.5)
     interval_input = input("Enter screenshot interval in seconds (default is 2, minimum is 0.1): ").strip()
     screenshot_interval = float(interval_input) if interval_input else 2.0
-    if screenshot_interval < 0.1:
+    if screenshot_interval < 0.1: # change for less delay
         print("Interval too low. Using minimum of 0.1 seconds.")
-        screenshot_interval = 0.1
+        screenshot_interval = 0.1 # change for less delay
 except ValueError:
     print("Invalid input. Using default of 2 seconds.")
     screenshot_interval = 2.0
@@ -99,13 +98,14 @@ def capture_loop():
             session_count += 1
             total_in_folder = get_total_in_folder()
             print(f"Saved {filename} | Session: {session_count} | Total in folder: {total_in_folder}")
-
+            
             if session_count % milestone_interval == 0:
                 try:
                     playsound(milestone_sound)
                     print("Milestone reached!")
                 except Exception as e:
                     print(f"Error playing milestone sound: {e}")
+        
         time.sleep(screenshot_interval)
 
 # Start keyboard listener
